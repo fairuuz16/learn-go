@@ -16,6 +16,7 @@ func main() {
 	greetUsers()
 
 	for {
+
 		firstName, lastName, email, userTickets := getUserInput()
 		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, userTickets)
 
@@ -27,7 +28,6 @@ func main() {
 			fmt.Printf("The first names %v\n", firstNames)
 
 			if remainingTickets == 0 {
-				// end program
 				break
 			}
 		} else {
@@ -89,14 +89,13 @@ func greetUsers() {
 func bookTicket(userTickets uint, firstName string, lastName string, email string) {
 	remainingTickets = remainingTickets - userTickets
 
-	var userData = make(map[string]string)
-	userData["firstName"] = firstName
-	userData["lastName"] = lastName
-	userData["email"] = email
-	userData["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+	var user = make(map[string]string)
+	user["firstName"] = firstName
+	user["lastName"] = lastName
+	user["email"] = email
+	user["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
 
-	bookings = append(bookings, userData)
-	fmt.Printf("List of bookings is %v\n", bookings)
+	bookings = append(bookings, user)
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
